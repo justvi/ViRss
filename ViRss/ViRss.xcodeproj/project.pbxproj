@@ -13,6 +13,8 @@
 		A3A4C21619FB4BE4004F9F0F /* ViRssTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4C21519FB4BE4004F9F0F /* ViRssTests.m */; };
 		A3A4C22119FDE5C9004F9F0F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4C22019FDE5C9004F9F0F /* MasterViewController.m */; };
 		A3A4C22419FDE5D8004F9F0F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4C22319FDE5D8004F9F0F /* DetailViewController.m */; };
+		A3C4133219FF6AC900E060D7 /* AddRssViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C4133119FF6AC900E060D7 /* AddRssViewController.m */; };
+		A3C4133519FF736E00E060D7 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C4133419FF736E00E060D7 /* ArticleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,10 @@
 		A3A4C22019FDE5C9004F9F0F /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		A3A4C22219FDE5D8004F9F0F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		A3A4C22319FDE5D8004F9F0F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		A3C4133019FF6AC900E060D7 /* AddRssViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRssViewController.h; sourceTree = "<group>"; };
+		A3C4133119FF6AC900E060D7 /* AddRssViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRssViewController.m; sourceTree = "<group>"; };
+		A3C4133319FF736E00E060D7 /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
+		A3C4133419FF736E00E060D7 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +90,12 @@
 				A3A4C1FE19FB4BE4004F9F0F /* AppDelegate.m */,
 				A3A4C21F19FDE5C9004F9F0F /* MasterViewController.h */,
 				A3A4C22019FDE5C9004F9F0F /* MasterViewController.m */,
+				A3C4133019FF6AC900E060D7 /* AddRssViewController.h */,
+				A3C4133119FF6AC900E060D7 /* AddRssViewController.m */,
 				A3A4C22219FDE5D8004F9F0F /* DetailViewController.h */,
 				A3A4C22319FDE5D8004F9F0F /* DetailViewController.m */,
+				A3C4133319FF736E00E060D7 /* ArticleViewController.h */,
+				A3C4133419FF736E00E060D7 /* ArticleViewController.m */,
 				A3A4C20619FB4BE4004F9F0F /* Images.xcassets */,
 				A3A4C1F919FB4BE4004F9F0F /* Supporting Files */,
 			);
@@ -217,9 +227,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A4C1FF19FB4BE4004F9F0F /* AppDelegate.m in Sources */,
+				A3C4133219FF6AC900E060D7 /* AddRssViewController.m in Sources */,
 				A3A4C22119FDE5C9004F9F0F /* MasterViewController.m in Sources */,
 				A3A4C1FC19FB4BE4004F9F0F /* main.m in Sources */,
 				A3A4C22419FDE5D8004F9F0F /* DetailViewController.m in Sources */,
+				A3C4133519FF736E00E060D7 /* ArticleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +405,7 @@
 				A3A4C21B19FB4BE4004F9F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3A4C21C19FB4BE4004F9F0F /* Build configuration list for PBXNativeTarget "ViRssTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +414,7 @@
 				A3A4C21E19FB4BE4004F9F0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

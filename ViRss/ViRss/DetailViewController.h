@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UITableViewController <UISplitViewControllerDelegate>
-
+@property (nonatomic, strong) NSString *textInfo;
 @end

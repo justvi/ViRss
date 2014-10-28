@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "ArticleViewController.h"
 
 @interface DetailViewController ()
 @property (nonatomic, strong) UIPopoverController *navigationPopoverController;
@@ -14,6 +15,14 @@
 @end
 
 @implementation DetailViewController
+
+- (void)setTextInfo:(NSString *)textInfo
+{
+    if (textInfo != _textInfo) {
+        _textInfo = textInfo;
+        [self.tableView reloadData];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,20 +37,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
 }
 
 #pragma mark - UISplitViewControllerDelegate
@@ -59,15 +54,30 @@
     self.navigationItem.leftBarButtonItem = nil;
 }
 
-/*
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: forIndexPath:indexPath];
+    static NSString *identifier = @"reuse";
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:identifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
     
     // Configure the cell...
+    cell.textLabel.text = self.textInfo;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -103,9 +113,16 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ArticleViewController *controller = [[ArticleViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
