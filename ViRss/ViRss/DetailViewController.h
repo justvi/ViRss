@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UITableViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UITableViewController <UISplitViewControllerDelegate, NSURLConnectionDelegate>
 @property (nonatomic, strong) NSString *textInfo;
+@property (nonatomic, strong) NSURLConnection *conn;
+@property (nonatomic, strong) NSMutableData *rssData;
 @end

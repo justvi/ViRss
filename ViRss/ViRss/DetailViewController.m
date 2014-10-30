@@ -20,6 +20,7 @@
 {
     if (textInfo != _textInfo) {
         _textInfo = textInfo;
+        [self start];
         [self.tableView reloadData];
     }
 }
@@ -37,6 +38,51 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - NSURLConnectionDelegate
+
+- (void)start
+{
+    NSURL *url = [NSURL URLWithString:self.textInfo];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    if (self.rssData == nil) {
+        self.rssData = [[NSMutableData alloc] init];
+    } else {
+        [self.rssData setLength:0];
+    }
+    self.conn = [NSURLConnection connectionWithRequest:request delegate:self];
+    [self.conn start];
+    NSLog(@"start downloading: %@", self.textInfo);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [self.rssData setLength:0];
+    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+    if (resp.statusCode == 200) {
+        NSLog(@"success receive response");
+    } else {
+        [connection cancel];
+        NSLog(@"did receive response");
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"did receive data size: %ld", [data length]);
+    [self.rssData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"did finish loading, receive data total size: %ld", [self.rssData length]);
+    NSLog(@"%@", self.rssData);
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"failed: %@", error);
 }
 
 #pragma mark - UISplitViewControllerDelegate

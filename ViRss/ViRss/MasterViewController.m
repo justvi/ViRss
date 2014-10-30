@@ -53,11 +53,11 @@
     
     // Configure the cell...
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"rss 1";
+        cell.textLabel.text = @"http://blog.devtang.com/atom.xml";
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"rss 2";
+        cell.textLabel.text = @"http://wangzz.github.io/atom.xml";
     } else {
-        cell.textLabel.text = @"rss 3";
+        cell.textLabel.text = @"http://iiiyu.com/atom.xml";
     }
     
     return cell;
