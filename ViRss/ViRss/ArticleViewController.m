@@ -17,13 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 80, 500, 40)];
-    label.text = @"hello";
-    [self.view addSubview:label];
-    
-    UITextView *textView =[[UITextView alloc] initWithFrame:CGRectMake(40, 160, 500, 500)];
-    textView.text = @"wa wa wa";
-    [self.view addSubview:textView];
+    UIWebView *content = [[UIWebView alloc] initWithFrame:CGRectMake(40, 80, 600, 600)];
+    [content loadHTMLString:self.contentString baseURL:nil];
+    [self.view addSubview:content];
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A34181441A10BDD300DD1E88 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = A34181431A10BDD300DD1E88 /* Post.m */; };
 		A3A4C1FC19FB4BE4004F9F0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4C1FB19FB4BE4004F9F0F /* main.m */; };
 		A3A4C1FF19FB4BE4004F9F0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4C1FE19FB4BE4004F9F0F /* AppDelegate.m */; };
 		A3A4C20719FB4BE4004F9F0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3A4C20619FB4BE4004F9F0F /* Images.xcassets */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A34181421A10BDD300DD1E88 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		A34181431A10BDD300DD1E88 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		A3A4C1F619FB4BE4004F9F0F /* ViRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A4C1FA19FB4BE4004F9F0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3A4C1FB19FB4BE4004F9F0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				A3C4133119FF6AC900E060D7 /* AddRssViewController.m */,
 				A3A4C22219FDE5D8004F9F0F /* DetailViewController.h */,
 				A3A4C22319FDE5D8004F9F0F /* DetailViewController.m */,
+				A34181421A10BDD300DD1E88 /* Post.h */,
+				A34181431A10BDD300DD1E88 /* Post.m */,
 				A3C4133319FF736E00E060D7 /* ArticleViewController.h */,
 				A3C4133419FF736E00E060D7 /* ArticleViewController.m */,
 				A3A4C20619FB4BE4004F9F0F /* Images.xcassets */,
@@ -232,6 +237,7 @@
 				A3A4C1FC19FB4BE4004F9F0F /* main.m in Sources */,
 				A3A4C22419FDE5D8004F9F0F /* DetailViewController.m in Sources */,
 				A3C4133519FF736E00E060D7 /* ArticleViewController.m in Sources */,
+				A34181441A10BDD300DD1E88 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

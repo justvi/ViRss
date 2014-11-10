@@ -8,8 +8,14 @@
 
 #import "DetailViewController.h"
 #import "ArticleViewController.h"
+#import "Post.h"
 
 @interface DetailViewController ()
+{
+    NSMutableString *currentValue;
+    Post *post;
+    BOOL parsingItem;
+}
 @property (nonatomic, strong) UIPopoverController *navigationPopoverController;
 
 @end
@@ -21,7 +27,7 @@
     if (textInfo != _textInfo) {
         _textInfo = textInfo;
         [self start];
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }
 }
 
@@ -76,13 +82,73 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"did finish loading, receive data total size: %ld", [self.rssData length]);
-    NSLog(@"%@", self.rssData);
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.rssData];
+    parser.delegate = self;
+    [parser parse];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"failed: %@", error);
+}
+
+#pragma mark - NSXMLParserDelegate
+
+- (void)parserDidStartDocument:(NSXMLParser *)parser
+{
+    self.entries = [[NSMutableArray alloc] init];
+    
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    [self.tableView reloadData];
+}
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+    //    NSLog(@"element name: %@", elementName);
+    if ([elementName isEqualToString:@"entry"]) {
+        post = [[Post alloc] init];
+        parsingItem = YES;
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    //    NSLog(@"element name: %@---", elementName);
+    if ([elementName isEqualToString:@"entry"]) {
+        [self.entries addObject:post];
+        NSLog(@"%@", post);
+        post = nil;
+        parsingItem = NO;
+    }
+    
+    if (parsingItem == YES) {
+        if ([elementName isEqualToString:@"title"]) {
+            post.title = currentValue;
+        } else if ([elementName isEqualToString:@"link"]) {
+            post.link = currentValue;
+        } else if ([elementName isEqualToString:@"updated"]) {
+            //post.updated = ;
+        } else if ([elementName isEqualToString:@"id"]) {
+            post.wid = currentValue;
+        } else if ([elementName isEqualToString:@"content"]) {
+            post.content = currentValue;
+        }
+    }
+    
+    currentValue = nil;
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    NSString *tmpValue = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (currentValue == nil) {
+        currentValue = [[NSMutableString alloc] initWithString:tmpValue];
+    } else {
+        [currentValue appendString:tmpValue];
+    }
 }
 
 #pragma mark - UISplitViewControllerDelegate
@@ -107,7 +173,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [self.entries count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,7 +185,7 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = self.textInfo;
+    cell.textLabel.text = [[self.entries objectAtIndex:indexPath.row] title];
     
     return cell;
 }
@@ -165,6 +231,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArticleViewController *controller = [[ArticleViewController alloc] init];
+    controller.contentString = [[self.entries objectAtIndex:indexPath.row] content];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
